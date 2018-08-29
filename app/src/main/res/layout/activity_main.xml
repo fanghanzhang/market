@@ -34,6 +34,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:button="@null"
+                android:textColor="@drawable/main_select"
                 android:drawableTop="@drawable/main_hover"
                 android:gravity="center"
                 android:text="主页" />
@@ -44,6 +45,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:button="@null"
+                android:textColor="@drawable/main_select"
                 android:drawableTop="@drawable/catogary_hover"
                 android:gravity="center"
                 android:text="分类" />
@@ -54,6 +56,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:button="@null"
+                android:textColor="@drawable/main_select"
                 android:drawableTop="@drawable/car_hover"
                 android:gravity="center"
                 android:text="购物车" />
@@ -64,7 +67,8 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:button="@null"
-                android:drawableTop="@drawable/person_down"
+                android:drawableTop="@drawable/person_hover"
+                android:textColor="@drawable/main_select"
                 android:gravity="center"
                 android:text="我的" />
         </RadioGroup>
