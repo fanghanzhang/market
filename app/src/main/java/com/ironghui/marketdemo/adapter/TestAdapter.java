@@ -6,11 +6,17 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.ironghui.marketdemo.R;
+import com.ironghui.marketdemo.bean.GridviewBean;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class TestAdapter extends RecyclerView.Adapter {
 
@@ -20,6 +26,7 @@ public class TestAdapter extends RecyclerView.Adapter {
     private List<String> mList;
     private Context mContext;
     private final LayoutInflater inflater;
+    private List<GridviewBean> beans;
 
     public TestAdapter(Context context, List<String> list) {
         mContext = context;
@@ -36,28 +43,39 @@ public class TestAdapter extends RecyclerView.Adapter {
                 BannerViewHolder bannerViewHolder = new BannerViewHolder(view);
                 return bannerViewHolder;
             case COLUMN:
-            case GRIDE:
-                View view1 = inflater.inflate(R.layout.testadapter_item, parent, false);
-                ViewHolder viewHolder = new ViewHolder(view1);
+                View clolumnView = inflater.inflate(R.layout.item_gridview, parent, false);
+                MidleViewHolder viewHolder = new MidleViewHolder(clolumnView);
                 return viewHolder;
+            case GRIDE:
+                View gridleView = inflater.inflate(R.layout.item_gride, parent, false);
+                BottomGrideHolder grideHolder = new BottomGrideHolder(gridleView);
+                return grideHolder;
         }
         return null;
     }
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-       if (holder instanceof BannerViewHolder){
+        if (holder instanceof BannerViewHolder) {
 
-       }
-       if (holder instanceof ViewHolder){
-           ((ViewHolder) holder).text_item.setText(mList.get(position).toString());
-       }
+        }
+        if (holder instanceof MidleViewHolder) {
+            getData();
+            GridViewAdapter adapter = new GridViewAdapter(mContext, beans);
+            ((MidleViewHolder) holder).gridView.setAdapter(adapter);
+        }
+        if (holder instanceof BottomGrideHolder) {
+            ((BottomGrideHolder) holder).imageview_left.setImageResource(R.drawable.left_png);
+//            Glide.with(mContext).load(R.drawable.right_top).into(((GrideHolder) holder).imageview_right_top);
+            Glide.with(mContext).load("http://ojyz0c8un.bkt.clouddn.com/home_two_01.png").into(((BottomGrideHolder) holder).imageview_right_bottom);
+            Glide.with(mContext).load("http://ojyz0c8un.bkt.clouddn.com/b_7.jpg").into(((BottomGrideHolder) holder).imageview_right_top);
+        }
     }
 
 
     @Override
     public int getItemCount() {
-        return 13;
+        return 12;
     }
 
     @Override
@@ -66,20 +84,35 @@ public class TestAdapter extends RecyclerView.Adapter {
             return BANNER;
         } else if (position >= 1 && position <= 10) {
             return COLUMN;
-        } else if (position > 10) {
+        } else if (position > 10 && position <= 11) {
             return GRIDE;
         }
         return super.getItemViewType(position);
     }
 
+    private List<Map<String, Object>> dataList;
 
-    class ViewHolder extends RecyclerView.ViewHolder {
+    public void getData() {
+        int icno[] = {R.drawable.left, R.drawable.left_png, R.drawable.left,
+                R.drawable.right_top, R.drawable.bottom, R.drawable.bottom, R.drawable.bottom,
+                R.drawable.right_top, R.drawable.right_top, R.drawable.right_top, R.drawable.right_top, R.drawable.right_top};
+        //图标下的文字
+        String name[] = {"时钟", "信号", "宝箱", "秒钟", "大象", "FF", "记事本", "书签", "印象", "商店", "主题", "迅雷"};
+        beans = new ArrayList<>();
+        for (int i = 0; i < icno.length; i++) {
+            GridviewBean bean = new GridviewBean(icno[i], name[i]);
+            beans.add(bean);
+        }
 
-        private  TextView text_item;
+    }
 
-        public ViewHolder(View itemView) {
+    class MidleViewHolder extends RecyclerView.ViewHolder {
+
+        private final GridView gridView;
+
+        public MidleViewHolder(View itemView) {
             super(itemView);
-            text_item = itemView.findViewById(R.id.text_item);
+            gridView = itemView.findViewById(R.id.gridview);
         }
     }
 
@@ -88,6 +121,20 @@ public class TestAdapter extends RecyclerView.Adapter {
         public BannerViewHolder(View itemView) {
             super(itemView);
 
+        }
+    }
+
+    class BottomGrideHolder extends RecyclerView.ViewHolder {
+
+        private ImageView imageview_left;
+        private ImageView imageview_right_bottom;
+        private ImageView imageview_right_top;
+
+        public BottomGrideHolder(View itemView) {
+            super(itemView);
+            imageview_left = itemView.findViewById(R.id.imageview_left);
+            imageview_right_top = itemView.findViewById(R.id.imageview_right_top);
+            imageview_right_bottom = itemView.findViewById(R.id.imageview_right_bottom);
         }
     }
 }

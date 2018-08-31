@@ -6,8 +6,10 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 
+import com.bumptech.glide.Glide;
 import com.ironghui.marketdemo.R;
 import com.ironghui.marketdemo.fragment.CategeryFragment;
 import com.ironghui.marketdemo.fragment.MainHomeFragment;
@@ -30,6 +32,8 @@ public class MainActivity extends AppCompatActivity {
     RadioButton marketCar;
     @BindView(R.id.main)
     RadioButton main;
+    @BindView(R.id.imageview)
+    ImageView imageview;
     private MainHomeFragment mainHomeFragment;
     private CategeryFragment categeryFragment;
     private FragmentManager fragmentManager;
@@ -57,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initMainHomeFragment() {
-      FragmentTransaction  transaction = fragmentManager.beginTransaction();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
         hideFrament(transaction);
         if (mainHomeFragment == null) {
             mainHomeFragment = new MainHomeFragment();
@@ -69,12 +73,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initCatogaryFragment() {
-        FragmentTransaction  transaction = fragmentManager.beginTransaction();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
         hideFrament(transaction);
-        if (categeryFragment==null){
+        if (categeryFragment == null) {
             categeryFragment = new CategeryFragment();
-            transaction.add(R.id.framlayout,categeryFragment);
-        }else {
+            transaction.add(R.id.framlayout, categeryFragment);
+        } else {
             transaction.show(categeryFragment);
         }
         transaction.commitAllowingStateLoss();
@@ -84,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
         if (mainHomeFragment != null) {
             transaction.hide(mainHomeFragment);
         }
-        if (categeryFragment!=null){
+        if (categeryFragment != null) {
             transaction.hide(categeryFragment);
         }
     }
@@ -93,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.main_home:
-               initMainHomeFragment();
+                initMainHomeFragment();
                 break;
             case R.id.catagory:
                 initCatogaryFragment();
