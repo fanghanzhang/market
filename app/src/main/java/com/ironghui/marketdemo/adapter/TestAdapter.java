@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.ironghui.marketdemo.R;
@@ -44,12 +43,12 @@ public class TestAdapter extends RecyclerView.Adapter {
                 return bannerViewHolder;
             case COLUMN:
                 View clolumnView = inflater.inflate(R.layout.item_gridview, parent, false);
-                MidleViewHolder viewHolder = new MidleViewHolder(clolumnView);
-                return viewHolder;
+                MidleViewHolder midleHolder = new MidleViewHolder(clolumnView);
+                return midleHolder;
             case GRIDE:
                 View gridleView = inflater.inflate(R.layout.item_gride, parent, false);
-                BottomGrideHolder grideHolder = new BottomGrideHolder(gridleView);
-                return grideHolder;
+                BottomGrideHolder bottomHolder = new BottomGrideHolder(gridleView);
+                return bottomHolder;
         }
         return null;
     }
@@ -75,16 +74,16 @@ public class TestAdapter extends RecyclerView.Adapter {
 
     @Override
     public int getItemCount() {
-        return 12;
+        return 3;
     }
 
     @Override
     public int getItemViewType(int position) {
         if (position == 0) {
             return BANNER;
-        } else if (position >= 1 && position <= 10) {
+        } else if (position >= 1 && position <= 1) {
             return COLUMN;
-        } else if (position > 10 && position <= 11) {
+        } else if (position >=2 ) {
             return GRIDE;
         }
         return super.getItemViewType(position);
@@ -94,10 +93,9 @@ public class TestAdapter extends RecyclerView.Adapter {
 
     public void getData() {
         int icno[] = {R.drawable.left, R.drawable.left_png, R.drawable.left,
-                R.drawable.right_top, R.drawable.bottom, R.drawable.bottom, R.drawable.bottom,
-                R.drawable.right_top, R.drawable.right_top, R.drawable.right_top, R.drawable.right_top, R.drawable.right_top};
+                R.drawable.right_top, R.drawable.bottom, R.drawable.bottom, R.drawable.bottom,R.drawable.right_top};
         //图标下的文字
-        String name[] = {"时钟", "信号", "宝箱", "秒钟", "大象", "FF", "记事本", "书签", "印象", "商店", "主题", "迅雷"};
+        String name[] = {"时钟", "信号", "宝箱", "秒钟", "大象", "极光", "记事本", "书签"};
         beans = new ArrayList<>();
         for (int i = 0; i < icno.length; i++) {
             GridviewBean bean = new GridviewBean(icno[i], name[i]);

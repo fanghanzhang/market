@@ -45,14 +45,14 @@ class GridViewAdapter extends BaseAdapter {
         if (convertview == null) {
             convertview = LayoutInflater.from(mContext).inflate(R.layout.item, viewGroup, false);
             holder = new ViewHolder();
-            holder.imageView = convertview.findViewById(R.id.img);
-            holder.textView = convertview.findViewById(R.id.text);
+            holder.imageView = convertview.findViewById(R.id.imgview);
+            holder.textView = convertview.findViewById(R.id.textview);
             convertview.setTag(holder);
         } else {
             holder = (ViewHolder) convertview.getTag();
         }
-        holder.textView.setText(mDataList.get(i).getName());
         holder.imageView.setImageResource(mDataList.get(i).getBitmapId());
+        holder.textView.setText(mDataList.get(i).getName());
         return convertview;
     }
 
