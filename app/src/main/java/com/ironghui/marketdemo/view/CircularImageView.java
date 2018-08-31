@@ -107,15 +107,16 @@ public class CircularImageView extends ImageView {
                         - borderWidth, paint);
             }
             switch (this.action) {
-                case MotionEvent.ACTION_DOWN :
+                case MotionEvent.ACTION_DOWN:
                     setColorFilter(Color.GRAY, PorterDuff.Mode.MULTIPLY);
-                default :
+                default:
             }
             clearColorFilter();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         viewWidth = measureWidth(widthMeasureSpec);
         viewHeight = measureHeight(heightMeasureSpec, widthMeasureSpec);

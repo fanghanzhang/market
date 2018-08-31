@@ -12,7 +12,6 @@ import com.ironghui.marketdemo.R;
 import com.ironghui.marketdemo.bean.GridviewBean;
 
 import java.util.List;
-import java.util.Map;
 
 class GridViewAdapter extends BaseAdapter {
     private List<GridviewBean> mDataList;
