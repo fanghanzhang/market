@@ -1,23 +1,22 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
-    android:orientation="vertical" >
+    android:orientation="vertical">
 
     <com.ironghui.marketdemo.view.CircularImageView
         android:id="@+id/imgview"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
         android:layout_marginTop="10dp"
         android:src="@drawable/left" />
+
     <TextView
         android:id="@+id/textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
         android:layout_gravity="center"
-        android:text="文字"
-        />
+        android:layout_marginTop="2dp"
+        android:text="文字" />
 
 </LinearLayout>

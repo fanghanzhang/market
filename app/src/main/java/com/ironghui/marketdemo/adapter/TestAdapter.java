@@ -2,8 +2,6 @@ package com.ironghui.marketdemo.adapter;
 
 import android.app.AlertDialog;
 import android.content.Context;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -25,9 +23,8 @@ import com.youth.banner.loader.ImageLoader;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
-public class TestAdapter extends RecyclerView.Adapter implements OnBannerListener{
+public class TestAdapter extends RecyclerView.Adapter implements OnBannerListener {
 
     private static final int BANNER = 0;
     private static final int COLUMN = 1;
@@ -77,7 +74,7 @@ public class TestAdapter extends RecyclerView.Adapter implements OnBannerListene
             list_title.add("天天向上");
             list_title.add("热爱劳动");
             list_title.add("拒绝求偶");
-        //设置内置样式，共有六种可以点入方法内逐一体验使用。
+            //设置内置样式，共有六种可以点入方法内逐一体验使用。
             ((BannerViewHolder) holder).banner.setBannerStyle(BannerConfig.CIRCLE_INDICATOR_TITLE_INSIDE);
             //设置图片加载器，图片加载器在下方
             ((BannerViewHolder) holder).banner.setImageLoader(new MyLoader());
@@ -85,18 +82,19 @@ public class TestAdapter extends RecyclerView.Adapter implements OnBannerListene
             ((BannerViewHolder) holder).banner.setImages(list_path);
             //设置轮播的动画效果，内含多种特效，可点入方法内查找后内逐一体验
             ((BannerViewHolder) holder).banner.setBannerAnimation(Transformer.Default);
+            ((BannerViewHolder) holder).banner.setIndicatorGravity(BannerConfig.CENTER);//指示器居中
             //设置轮播图的标题集合
             ((BannerViewHolder) holder).banner.setBannerTitles(list_title);
             //设置轮播间隔时间
             ((BannerViewHolder) holder).banner.setDelayTime(2400);
-            //设置是否为自动轮播，默认是“是”。
-            ((BannerViewHolder) holder).banner.isAutoPlay(true);
-            //设置指示器的位置，小点点，左中右。
             ((BannerViewHolder) holder).banner.setIndicatorGravity(BannerConfig.CENTER)
                     //以上内容都可写成链式布局，这是轮播图的监听。比较重要。方法在下面。
                     .setOnBannerListener(this)
                     //必须最后调用的方法，启动轮播图。
                     .start();
+            //设置是否为自动轮播，默认是“是”。
+            ((BannerViewHolder) holder).banner.isAutoPlay(true);
+            //设置指示器的位置，小点点，左中右。
         }
         if (holder instanceof MidleViewHolder) {
             getData();
@@ -139,9 +137,9 @@ public class TestAdapter extends RecyclerView.Adapter implements OnBannerListene
 
     public void getData() {
         int icno[] = {R.drawable.left, R.drawable.left_png, R.drawable.left,
-                R.drawable.right_top, R.drawable.bottom, R.drawable.bottom, R.drawable.bottom, R.drawable.right_top};
+                R.drawable.right_top, R.drawable.bottom, R.drawable.bottom, R.drawable.bottom, R.drawable.right_top, R.drawable.left, R.drawable.bottom};
         //图标下的文字
-        String name[] = {"时钟", "信号", "宝箱", "秒钟", "大象", "极光", "记事本", "书签"};
+        String name[] = {"时钟", "信号", "宝箱", "秒钟", "大象", "极光", "记事本", "书签", "耍宝", "火艮"};
         beans = new ArrayList<>();
         for (int i = 0; i < icno.length; i++) {
             GridviewBean bean = new GridviewBean(icno[i], name[i]);
@@ -185,6 +183,7 @@ public class TestAdapter extends RecyclerView.Adapter implements OnBannerListene
             imageview_right_bottom = itemView.findViewById(R.id.imageview_right_bottom);
         }
     }
+
     //自定义的图片加载器
     private class MyLoader extends ImageLoader {
         @Override
